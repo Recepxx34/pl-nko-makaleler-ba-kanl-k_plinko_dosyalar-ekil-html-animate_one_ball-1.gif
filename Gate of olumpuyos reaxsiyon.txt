@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function dogrula(){
+var deger=document.form1.name.value;
+if(deger==""){
+window.alert("Kullanıcı adı boş bırakılamaz..");
+return false;
+}
+}
+</script>
+</head>
+<body>
+<form name="form1" method="POST" action="gonder.php" onsubmit="return dogrula()">
+Kullanıcı Adı: <input type="text" name="name"/><br/>
+<input type="submit" value="Gönder">
+</form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function dogrula(){
+var deger= document.getElementById("girdi").value;
+if(isNaN(deger)== true || deger==""){
+window.alert("Geçersiz Giriş");
+}
+else{
+window.alert("Geçerli Giriş");
+}
+}
+</script>
+</head>
+<body>
+<input id="girdi"><br/>
+<button onclick="dogrula()">Kontrol</button>
+</body>
+</html>
+DERS -27 JavaScript -Form API’si
+x.checkValidity() :Form öğsini verilen değere göre kontrol eder.
+x.validationMessage: Form için uyarı mesajları
+Kaynak Kodu (index.html)
+<body>
+<script>
+function kontrol(){
+var x= document.getElementById("sayi");
+if(x.checkValidity()==false){
+window.alert(x.validationMessage);
+}
+else{
+window.alert("İnput Geçerli")
+}
+}
+script>
+<input id="sayi" type="number" min="50" max="100" required><br/>
+<button onclick="kontrol()">Kontrol ET</button>
+</body>
+DERS -28 JavaScript -HTML DOM’lara 
+GİRİŞ 
+Document Object Model
+Document-- > html -- > Head/Body
+Document.URL
+Document.title
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function degistir(){
+window.alert(document.URL);
+document.getElementById("prf").style.color="red";
+document.getElementById("prf").style.backgroundColor="blue";
+}
+</script>
+</head>
+<body>
+<span id="prf"> Java Script Öğreniyorum</span>
+<button onclick="degistir()"> Değiştir</button>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function degistir(){
+var p = document.getElementById("prf");
+p.style.color="red";
+p.style.backgroundColor="yellow";
+p.style.textAlign="center";
+p.style.fontSize="40px";
+}
+function gizle(){
+document.getElementById("prf").style.visibility="hidden";
+}
+function goster(){
+document.getElementById("prf").style.visibility="visible"
+}
+</script>
+</head>
+<body>
+<p id="prf"> Java Script Öğreniyorum</p>
+<button onclick="degistir()"> Değiştir</button>
+<button onclick="gizle()"> Gizle</button>
+<button onclick="goster()"> Göster</button>
+</body>
+</html>
+DERS -30 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<!-- p.style.color="red";
+p.style.backgroundColor="yellow";
+p.style.textAlign="center";
+p.style.fontSize="40px";
+-->
+</head>
+<body>
+<script>
+function degistir(){
+var elementler = document.getElementsByTagName("p");
+window.alert(elementler.length);
+elementler[1].style.color="red";
+elementler[3].style.fontSize="40px";
+}
+function gizle(){
+var elementler = document.getElementsByTagName("p");
+var i=0;
+for (;i<elementler.length;i++){
+elementler[i].style.visibility="hidden";
+}
+}
+function secim(){
+var elementler = document.getElementsByClassName("clas1");
+var i=0;
+for (;i<elementler.length;i++){
+elementler[i].style.backgroundColor="green";
+}
+}
+</script>
+<p> Java Script Öğreniyorum</p>
+<p class="clas1"> Java Script Öğreniyorum</p>
+<p> Java Script Öğreniyorum</p>
+<p> Java Script Öğreniyorum</p>
+<p class="clas1"> Java Script Öğreniyorum</p>
+<p class="clas1"> Java Script Öğreniyorum</p>
+<button onclick="degistir()"> Değiştir</button>
+<button onclick="gizle()"> Gizle</button>
+<button onclick="secim()"> Seçim</button>
+</body>
+</html>
+DERS -31 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<style>
+div{
+width:200px;
+height:200px;
+background-color:green;
+}
+</style>
+</head>
+<body>
+<div id="div1"> Java Script</div>
+<img src="resimler/a2.jpg" id="resim" width="400px" height="400px"/>
+<script>
+var div=document.getElementById("div1");
+div.onclick= function(){
+this.innerHTML="Serkan";
+}
+var resim=document.getElementById("resim");
+resim.onmouseover=function(){
+this.src="resimler/a1.jpg";
+}
+resim.onmouseout=function(){
+this.src="resimler/a2.jpg";
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+</head>
+<body>
+<p id="prf"></p>
+<button id="btn1">Buton</button>
+<script>
+var buton=document.getElementById("btn1");
+buton.addEventListener("click",tikla);
+buton.addEventListener("mouseover",mouseover);
+buton.addEventListener("mouseout",mouseout);
+function tikla(){
+document.getElementById("prf").innerHTML="Tıklandı";
+}
+function mouseover(){
+document.getElementById("prf").innerHTML="Mouse Over";
+}
+function mouseout(){
+document.getElementById("prf").innerHTML="Mouse Out";
+}
+</script>
+</body>
+</htm
+P elementi div’in çocuğu--- > Parent,Child
+var metin=document.getElementById("textarea").value;//Text area nın değerini aldık
+var yenielement= document.createElement("p"); // bir tane p elementi yarattık
+var icerik=document.createTextNode(metin);//dökümana eleman ekliyoruz
+yenielement.appendChild(icerik);//içeriği p ‘elementine ekliyoruz
+var anakisim=document.getElementById("anakısım") //anakısım divini aldık
+anakisim.appendChild(yenielement)//anakısım divine bir child ekledik
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function yenikisim(){
+var metin=document.getElementById("textarea").value;//Text area nın değerini aldık
+var yenielement= document.createElement("p"); // bir tane p elementi yarattık
+var icerik=document.createTextNode(metin);//dökümana eleman ekliyoruz
+yenielement.appendChild(icerik);
+var anakisim=document.getElementById("anakısım") //anakısım divini aldık
+anakisim.appendChild(yenielement)//anakısım divine bir child ekledik
+}
+</script>
+</head>
+<body>
+<div id="anakısım">
+<h2>Başlık 1</h2>
+<p>İçerik 1</p>
+<h2>Başlık 2</h2>
+<p>İçerik 2</p>
+<h2>Başlık 3</h2>
+<p>İçerik 3</p>
+</div>
+<textarea id="textarea"rows="10" cols="30"></textarea>
+<button onclick="yenikisim()">Yeni Kısım</button>
+</body>
+</html>
+DERS -34 JavaScript - JavaScript -Dinamik olarak HTML Silme
+( HTML DOM, Sayfaya içerik ekleme -Silme)
+function sil(){
+var elementler=document.getElementsByTagName("p");
+if(elementler.length !=0){
+var element=elementler[elementler.length-1];
+var anne=element.parentNode;
+anne.removeChild(element);
+}
+}
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function yenikisim(){
+var metin=document.getElementById("textarea").value;//Text area nın değerini aldık
+var yenielement= document.createElement("p"); // bir tane p elementi yarattık
+var icerik=document.createTextNode(metin);//dökümana eleman ekliyoruz
+yenielement.appendChild(icerik);
+var anakisim=document.getElementById("anakısım") //anakısım divini aldık
+anakisim.appendChild(yenielement)//anakısım divine bir child ekledik
+}
+function sil(){
+var elementler=document.getElementsByTagName("p");
+if(elementler.length !=0){
+var element=elementler[elementler.length-1];
+var anne=element.parentNode;
+anne.removeChild(element);
+}
+}
+</script>
+</head>
+<body>
+<div id="anakısım">
+<h2>Başlık 1</h2>
+<p>İçerik 1</p>
+<h2>Başlık 2</h2>
+<p>İçerik 2</p>
+<h2>Başlık 3</h2>
+<p>İçerik 3</p>
+</div>
+<textarea id="textarea"rows="10" cols="30"></textarea>
+<button onclick="yenikisim()">Yeni Kısım</button>
+<button onclick="sil()">Sil</button>
+</body>
+</html>
+DERS -35 JavaScript -HTML DOM Elementlere Dinamik olarak 
+özellik eklme
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<style>
+.kirmizi{
+color:red;
+background-color:yellow;
+}
+</style>
+<script>
+function degistir(){
+var elementler=document.getElementsByTagName("h2");
+var i=0;
+for(;i<elementler.length;i++){
+var ozellik=document.createAttribute("class");
+ozellik.value="kirmizi";
+elementler[i].setAttributeNode(ozellik);
+}
+var hrefozelligi= document.createAttribute("href");
+hrefozelligi.value="https://www.google.com";
+document.getElementById("aetiketi").setAttributeNode(hrefozelligi);
+}
+</script>
+</head>
+<body>
+<h2>Başlık 1</h2>
+<p>İçerik 1</p>
+<h2>Başlık 2</h2>
+<p>İçerik 2</p>
+<h2>Başlık 3</h2>
+<p>İçerik 3</p>
+<a id="aetiketi"> Buraya tıkla</a>
+<button onclick="degistir()">Değiştir</button>
+</body>
+</html>
+DERS -36 JavaScript -DOM lar üzerinde Gezinmek
+parent --- > child
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function degistir(){
+var parent=document.getElementById("anakısım");
+var child=parent.childNodes[1];
+//ilk elememanı almak için parent.firstElementChild;
+//Son elememanı almak için parent.lastElementChild;
+child.style.color="red";
+}
+</script>
+</head>
+<body>
+<div id="anakısım">
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+</div>
+<button onclick="degistir()">Değiştir</button>
+</body>
+</html>
+DERS -37 JavaScript -Element Kardeşliği
+var kardes=element.previousElementSibling; //önceki kardeş
+var kardes=element.nextElementSibling; // sonraki kardeş
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function degistir(){
+var element=document.getElementById("para3");
+//var parent=element.parentNode;
+//parent.style.color="pink";
+//parent.style.background="blue";
+var kardes=element.previousElementSibling;
+//var kardes=element.nextElementSibling;
+kardes.style.color="blue";
+}
+</script>
+</head>
+<body>
+<div id="anakısım">
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p id="para3">İçerik 3</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+<p>İçerik 1</p>
+</div>
+<button onclick="degistir()">Değiştir</button>
+</body>
+</html>
+DERS -38 JavaScript -Confirmation Box Onaylama Kutusu
+Confirm():
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+function yonlendir(){
+var ok=confirm("Google Gitmek istyor musunuz?");
+if(ok==true){
+return true;
+}
+else{
+return false;
+}
+}
+</script>
+</head>
+<body>
+<a onclick="return yonlendir();" href="https://www.google.com">Gitmek için tıkla</a>
+</body>
+</html>
+DERS -39 JavaScript - Zamanlama Fonksiyonları /Dosya Similasyonları
+/* var degisken=setTimeout(fonksiyon,sure)
+clearTimeout(degisken)
+ var degisken=setInterval(fonksiyon,sure)
+clearInterval(degisken)
+*/
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+/* var degisken=setTimeout(fonksiyon,sure)
+clearTimeout(degisken)
+var degisken=setInterval(fonksiyon,sure)
+clearInterval(degisken)
+*/
+var say=5;
+var indirme;
+var sure;
+function baslat(){
+var indirme=setTimeout(dosyaindirme,5000);
+sureyisay();
+sure=setInterval(sureyisay,1000);
+}
+function dosyaindirme(){
+window.alert("Dosya inme başladı....")
+document.getElementById("para").innerHTML="";
+say=5;
+}
+function sureyisay(){
+document.getElementById("para").innerHTML="Dosaya"+say+"saniye içinde inecek";
+say--;
+if(say==0){
+clearInterval(sure);
+}
+}
+function islemleridurdur(){
+clearInterval(sure);
+clearTimeout(indirme);
+document.getElementById("para").innerHTML="Dosya indirmesi durduruldu...";
+say=5;
+}
+</script>
+</head>
+<body>
+<p> Dosya indirmek için tıklayın</p>
+<p id="para"></p>
+<p></p>
+<button onclick="baslat();">İndirmek İçin Tıkla</button>
+<button onclick="islemleridurdur();">İptal Etmek için Tıkla</button>
+</body>
+</html>
+DERS -40 JavaScript - Console F12
+Kaynak Kodu (index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> </title>
+<script>
+document.write("Konsolu kullan F12");
+</script>
+</head>
+<body>
+</body>
+</html>

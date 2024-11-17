@@ -1,0 +1,3 @@
+Currency,Address,"ExtraId(memo, destination tag, etc.)",Amount (6 decimals only!),Fiat amount,Fiat currency
+BTC,1KBCVP8jvkdYDy9gXRTA1SdxhTfxn,,0.123456,,
+XRP,rKKbNYZRqwPgZYkFWvqNUFBuscEy,,,10,USD
